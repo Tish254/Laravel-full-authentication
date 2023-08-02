@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SmsController;
+use App\Http\Controllers\TestsEnrollmentController;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -31,3 +34,7 @@ Route::get('/email', function() {
     Mail::to('pythonlearn254@gmail.com')->send(new WelcomeMail());
     return new WelcomeMail();
 });
+
+Route::get('/email', [EmailsController::class, 'email']);
+Route::get('/send-testenrollment', [TestsEnrollmentController::class, 'sendTestNotification']);
+Route::get('/sms', [SmsController::class, 'index']);
